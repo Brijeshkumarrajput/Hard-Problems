@@ -1,0 +1,23 @@
+import sys
+MODD=10000000007
+def inversion_function(arr_fun, n_fun):
+    inv_count = 0
+    for i_fun in range(n_fun):
+        for j_fun in range(i_fun + 1, n_fun):
+            if (arr_fun[i_fun] > arr_fun[j_fun]):
+                inv_count += 1
+    return inv_count
+TC=int(sys.stdin.readline())
+for i in range(TC):
+    res = 0
+    line=sys.stdin.readline().split()
+    N,MOD=int(line[0]),int(line[1])
+    A=list(map(int,input().split()))
+    for j in range(1,(N+1)%MODD):
+        for k in range(j,(N+1)%MODD):
+            arr=[j,k]
+            arr_fun =A[j-1:k]
+            n_fun = len(arr_fun)
+            res+=int(inversion_function(arr_fun, n_fun))
+    # print(res%MOD)
+    sys.stdout.write(str((res%MOD)%MODD) +"\n")
